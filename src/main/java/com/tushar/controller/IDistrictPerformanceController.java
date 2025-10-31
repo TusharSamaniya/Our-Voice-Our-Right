@@ -10,5 +10,6 @@ public interface IDistrictPerformanceController {
 	List<DistrictPerformance> getByDistrict(String name);
 	List<DistrictPerformance> getByDistrictAndYear(String name, int year);
 	DistrictPerformance addData(DistrictPerformance data);
-
+	String fetchDataFromAPI();
+	
 }

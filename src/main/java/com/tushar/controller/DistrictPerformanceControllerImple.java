@@ -11,16 +11,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tushar.api.MgnregaApiService;
 import com.tushar.entity.DistrictPerformance;
 import com.tushar.service.IDistrictPerformanceService;
 
 @RestController
 @RequestMapping("/api/performance")
 @CrossOrigin(origins = "*")
-public class DistrictPerformanceImple implements IDistrictPerformanceController {
+public class DistrictPerformanceControllerImple implements IDistrictPerformanceController {
 	
 	@Autowired
 	private IDistrictPerformanceService service;
+	
+	@Autowired
+	private MgnregaApiService apiService;
 
 	@Override
 	@GetMapping("/all")
@@ -35,7 +39,7 @@ public class DistrictPerformanceImple implements IDistrictPerformanceController 
 	}
 
 	@Override
-	@GetMapping("/district/{name}/year{year}")
+	@GetMapping("/district/{name}/year/{year}")
 	public List<DistrictPerformance> getByDistrictAndYear(@PathVariable String name, @PathVariable int year) {
 		return service.getByDistrictAndYear(name, year);
 	}
@@ -43,8 +47,14 @@ public class DistrictPerformanceImple implements IDistrictPerformanceController 
 	@Override
 	@PostMapping("/add")
 	public DistrictPerformance addData(@RequestBody DistrictPerformance data) {
-		// TODO Auto-generated method stub
 		return service.saveData(data);
+	}
+	
+	@Override
+	@GetMapping("fetch")
+	public String fetchDataFromAPI() {
+		apiService.fetchAndSaveData();
+		return "Data Fetch and stored successfully!";
 	}
 
 }
