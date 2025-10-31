@@ -1,6 +1,7 @@
 package com.tushar.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tushar.api.MgnregaApiService;
 import com.tushar.entity.DistrictPerformance;
 import com.tushar.service.IDistrictPerformanceService;
 
@@ -23,38 +23,55 @@ public class DistrictPerformanceControllerImple implements IDistrictPerformanceC
 	@Autowired
 	private IDistrictPerformanceService service;
 	
-	@Autowired
-	private MgnregaApiService apiService;
-
-	@Override
 	@GetMapping("/all")
-	public List<DistrictPerformance> getAll() {
-		return service.getAllData();
-	}
+    public List<DistrictPerformance> getAllRecords() {
+        return service.getAllRecords();
+    }
 
-	@Override
-	@GetMapping("/district/{name}")
-	public List<DistrictPerformance> getByDistrict(@PathVariable String name) {
-		return service.getByDistrict(name);
-	}
+    @GetMapping("/names")
+    public List<String> getAllDistricts() {
+        return service.getAllDistricts();
+    }
 
-	@Override
-	@GetMapping("/district/{name}/year/{year}")
-	public List<DistrictPerformance> getByDistrictAndYear(@PathVariable String name, @PathVariable int year) {
-		return service.getByDistrictAndYear(name, year);
-	}
+    @GetMapping("/years")
+    public List<String> getAllYears() {
+        return service.getAllYears();
+    }
 
-	@Override
-	@PostMapping("/add")
-	public DistrictPerformance addData(@RequestBody DistrictPerformance data) {
-		return service.saveData(data);
-	}
+    @GetMapping("/{districtName}")
+    public List<DistrictPerformance> getByDistrict(@PathVariable String districtName) {
+        return service.getByDistrict(districtName);
+    }
+
+    @GetMapping("/{districtName}/{finYear}")
+    public List<DistrictPerformance> getByDistrictAndYear(
+            @PathVariable String districtName,
+            @PathVariable String finYear) {
+        return service.getByDistrictAndYear(districtName, finYear);
+    }
+
+    @GetMapping("/top/{finYear}")
+    public List<DistrictPerformance> getTopDistrictsByExpenditure(@PathVariable String finYear) {
+        return service.getTopDistrictsByExpenditure(finYear);
+    }
+
+    @GetMapping("/trend/wage/{districtName}")
+    public List<Map<String, Object>> getWageTrend(@PathVariable String districtName) {
+        return service.getWageTrend(districtName);
+    }
+
+    @GetMapping("/compare/categoryB/{finYear}")
+    public List<Map<String, Object>> getCategoryBWorkComparison(@PathVariable String finYear) {
+        return service.getCategoryBWorkComparison(finYear);
+    }
+
+    @GetMapping("/summary/{districtName}")
+    public Map<String, Object> getDistrictSummary(@PathVariable String districtName) {
+        return service.getDistrictSummary(districtName);
+    }
 	
-	@Override
-	@GetMapping("fetch")
-	public String fetchDataFromAPI() {
-		apiService.fetchAndSaveData();
-		return "Data Fetch and stored successfully!";
-	}
+	
+
+	
 
 }

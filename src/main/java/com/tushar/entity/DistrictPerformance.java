@@ -1,29 +1,37 @@
 package com.tushar.entity;
 
-import java.time.LocalDate;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "district_performance")
+@Table(name = "book1")
 public class DistrictPerformance {
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String stateName;
-    private String districtName;
+    private Long id;
+
+    @Column(name = "fin_year")
+    private String finYear;
+
     private String month;
-    private int year;
-    private int householdsWorked;
-    private long totalPersondaysGenerated;
-    private double womenParticipationPercentage;
-    private double averageWage;
-    private double expenditureInLakhs;
-    private LocalDate dataSourceDate;
+
+    @Column(name = "district_name")
+    private String districtName;
+
+    @Column(name = "Average_Wage_rate_per_day_per_person")
+    private Double averageWageRatePerDayPerPerson;
+
+    @Column(name = "Total_Exp")
+    private Double totalExp;
+
+    @Column(name = "Total_Households_Worked")
+    private Integer totalHouseholdsWorked;
+
+    @Column(name = "percent_of_Category_B_Works")
+    private Integer percentOfCategoryBWorks;
+
+    @Column(name = "percentage_payments_generated")
+    private Double percentagePaymentsGenerated;
 }
