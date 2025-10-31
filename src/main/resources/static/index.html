@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Voice, Our Rights — MGNREGA Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Our Voice, Our Rights — MGNREGA Dashboard</h1>
+  </header>
+
+  <section class="filters">
+    <select id="districtSelect">
+      <option value="">Select District</option>
+    </select>
+    <select id="yearSelect">
+      <option value="">Select Year</option>
+    </select>
+    <button id="filterBtn">Filter</button>
+    <button id="resetBtn">Reset</button>
+  </section>
+
+  <section class="table-container">
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>District Name</th>
+          <th>Financial Year</th>
+          <th>Month</th>
+          <th>Total Expenditure</th>
+          <th>Average Wage Rate</th>
+          <th>Households Worked</th>
+          <th>% Category B Works</th>
+          <th>% Payments Generated</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td colspan="8" class="loading">Loading data...</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>Data Source: <a href="https://data.gov.in" target="_blank">data.gov.in</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
