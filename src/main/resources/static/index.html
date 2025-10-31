@@ -5,11 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Voice, Our Rights — MGNREGA Dashboard</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 </head>
 <body>
   <header>
     <h1>Our Voice, Our Rights — MGNREGA Dashboard</h1>
   </header>
+
+  <div class="dashboard-grid">
+    <div class="stat-card">
+      <h3>Total Records</h3>
+      <div class="stat-value" id="totalRecords">0</div>
+      <div class="stat-label">Data Points</div>
+    </div>
+    <div class="stat-card">
+      <h3>Total Expenditure</h3>
+      <div class="stat-value" id="totalExpenditure">₹0</div>
+      <div class="stat-label">Lakhs</div>
+    </div>
+    <div class="stat-card">
+      <h3>Avg Wage Rate</h3>
+      <div class="stat-value" id="avgWage">₹0</div>
+      <div class="stat-label">Per Day Per Person</div>
+    </div>
+    <div class="stat-card">
+      <h3>Total Households</h3>
+      <div class="stat-value" id="totalHouseholds">0</div>
+      <div class="stat-label">Worked</div>
+    </div>
+  </div>
 
   <section class="filters">
     <select id="districtSelect">
@@ -22,7 +46,35 @@
     <button id="resetBtn">Reset</button>
   </section>
 
+  <div class="charts-container">
+    <div class="chart-card">
+      <h2>Expenditure by District</h2>
+      <div class="chart-wrapper">
+        <canvas id="expenditureChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h2>Households Worked Over Time</h2>
+      <div class="chart-wrapper">
+        <canvas id="householdsChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h2>Average Wage Rate Trends</h2>
+      <div class="chart-wrapper">
+        <canvas id="wageChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h2>Payment Generation %</h2>
+      <div class="chart-wrapper">
+        <canvas id="paymentChart"></canvas>
+      </div>
+    </div>
+  </div>
+
   <section class="table-container">
+    <h2 style="color: #764ba2; margin-bottom: 20px; text-align: center;">Detailed Data</h2>
     <table id="dataTable">
       <thead>
         <tr>
@@ -37,7 +89,7 @@
         </tr>
       </thead>
       <tbody id="tableBody">
-        <tr><td colspan="8" class="loading">Loading data...</td></tr>
+        <tr><td colspan="8" class="loading"><div class="spinner"></div>Loading data...</td></tr>
       </tbody>
     </table>
   </section>
